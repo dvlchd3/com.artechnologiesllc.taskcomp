@@ -58,44 +58,6 @@
         <version>1.8.0.10</version>
     </dependency>
   </dependencies>
-  <build>
-    <extensions>
-        <extension>
-            <groupId>hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>1.8.0.10</version>
-        </extension>
-        <extension>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.16</version>
-        </extension>
-    </extensions>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>1.6</source>
-                <target>1.6</target>
-            </configuration>
-        </plugin>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>hibernate3-maven-plugin</artifactId>
-            <version>2.2</version>
-            <executions>
-                <execution>
-                    <id>generate-ddl</id>
-                    <phase>process-classes</phase>
-                    <goals>
-                        <goal>hbm2ddl</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-  </build>
   <reporting>
     <plugins>
         <plugin>
