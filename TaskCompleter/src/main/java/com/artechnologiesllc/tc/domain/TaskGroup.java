@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.artechnologiesllc.taskcompleter.domain;
+package com.artechnologiesllc.tc.domain;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +17,7 @@ import org.hibernate.annotations.IndexColumn;
 public class TaskGroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @Column(name="GROUP_ID")
+    @Column(name="group_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
@@ -25,10 +25,10 @@ public class TaskGroup implements Serializable {
     private String name;
     
     @ManyToMany
-    @IndexColumn(name="ORDER_NUM")
-    @JoinTable(name="TASKGROUP_TO_TASK",
-            joinColumns=@JoinColumn(name="TASK_ID"),
-            inverseJoinColumns=@JoinColumn(name="GROUP_ID"))
+    @IndexColumn(name="order_num")
+    @JoinTable(name="TaskgroupToTask",
+            joinColumns=@JoinColumn(name="task_id"),
+            inverseJoinColumns=@JoinColumn(name="group_id"))
     private List<Task> tasks;
 
     public Long getId() {

@@ -2,15 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.artechnologiesllc.taskcompleter.domain;
+package com.artechnologiesllc.tc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
 /**
- *
- * @author dan
+ * Represents completion information for a given <code>Task</code>
+ * that was scheduled to be completed on a given day.
+ * 
+ * Warning: This class lazy loads the <code>Task</code> association.
+ * 
+ * @author Dan Buhrman
  */
 @Entity
 public class CompleteInfo implements Serializable {

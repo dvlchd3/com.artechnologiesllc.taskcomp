@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.artechnologiesllc.taskcompleter.domain;
+package com.artechnologiesllc.tc.domain;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,11 +13,15 @@ import javax.persistence.*;
  * @author dan
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="com.artechnologiesllc.tc.taskById",
+        query="from Task as task where task.id = ?")
+})
 public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
-    @Column(name="TASK_ID")
+    @Column(name="task_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
@@ -26,10 +30,13 @@ public class Task implements Serializable {
     
     private String details;
     
+    private String documentationFile;
+    
     @Column(nullable = false)
     private byte inputType;
     
-    @OneToOne(mappedBy="PROBLEM_ID")
+    @ManyToOne
+    @JoinColumn(name="problem_id")
     private Problem problem;
     
     @Column(nullable=false)
@@ -55,21 +62,13 @@ public class Task implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getTitle() {
         return title;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
-    }
-    
-    public short getDays() {
-        return days;
-    }
-
-    public void setDays(short days) {
-        this.days = days;
     }
 
     public String getDetails() {
@@ -80,12 +79,12 @@ public class Task implements Serializable {
         this.details = details;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public String getDocumentationFile() {
+        return documentationFile;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setDocumentationFile(String documentationFile) {
+        this.documentationFile = documentationFile;
     }
 
     public byte getInputType() {
@@ -94,14 +93,6 @@ public class Task implements Serializable {
 
     public void setInputType(byte inputType) {
         this.inputType = inputType;
-    }
-
-    public short getMonths() {
-        return months;
-    }
-
-    public void setMonths(short months) {
-        this.months = months;
     }
 
     public Problem getProblem() {
@@ -120,12 +111,36 @@ public class Task implements Serializable {
         this.startDate = startDate;
     }
 
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public short getDays() {
+        return days;
+    }
+
+    public void setDays(short days) {
+        this.days = days;
+    }
+
     public byte getWeeks() {
         return weeks;
     }
 
     public void setWeeks(byte weeks) {
         this.weeks = weeks;
+    }
+
+    public short getMonths() {
+        return months;
+    }
+
+    public void setMonths(short months) {
+        this.months = months;
     }
 
     @Override
