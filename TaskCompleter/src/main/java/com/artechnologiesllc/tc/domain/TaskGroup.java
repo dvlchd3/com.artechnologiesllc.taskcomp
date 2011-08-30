@@ -14,6 +14,12 @@ import org.hibernate.annotations.IndexColumn;
  * @author dan
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="com.artechnologiesllc.tc.taskGroupById",
+        query="from TaskGroup as group where group.id = ?"),
+    @NamedQuery(name="com.artechnologiesllc.tc.taskGroupByName",
+        query="from TaskGroup as group where group.name = ?")
+})
 public class TaskGroup implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -21,7 +27,7 @@ public class TaskGroup implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(nullable=false)
+    @Column(unique=true)
     private String name;
     
     @ManyToMany
