@@ -17,6 +17,16 @@ import javax.persistence.*;
  * @author Dan Buhrman
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="com.artechnologiesllc.tc.completeInfoByTaskScheduledDate",
+        query="from CompleteInfo as compInfo where compInfo.task = ? and scheduledDate = ?"),
+    @NamedQuery(name="com.artechnologiesllc.tc.completeInfoByTask",
+        query="from CompleteInfo as compInfo where compInfo.task = ?"),
+    @NamedQuery(name="com.artechnologiesllc.tc.completeInfoByScheduledDate",
+        query="from CompleteInfo as compInfo where compInfo.scheduledDate = ?"),
+    @NamedQuery(name="com.artechnologiesllc.tc.completeInfoByTaskScheduledDateRange",
+        query="from CompleteInfo as compInfo where compInfo.task = ? and compInfo.scheduledDate >= ? and compInfo.scheduledDate <= ?")
+})
 public class CompleteInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     
