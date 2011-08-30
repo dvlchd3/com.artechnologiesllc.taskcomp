@@ -9,7 +9,6 @@ import com.artechnologiesllc.tc.domain.Task;
 import com.artechnologiesllc.tc.persistence.dao.CompleteInfoDAO;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import org.apache.log4j.Logger;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
