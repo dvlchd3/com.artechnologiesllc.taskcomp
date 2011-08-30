@@ -11,7 +11,7 @@ import com.artechnologiesllc.tc.domain.Problem;
  * 
  * @author Dan Buhrman
  * 
- * @see com.artechnologiesllc.taskcompleter.domain.Problem
+ * @see com.artechnologiesllc.tc.domain.Problem
  */
 public interface ProblemDAO {
     
