@@ -11,7 +11,7 @@ import com.artechnologiesllc.tc.domain.Task;
  * 
  * @author dan
  * 
- * @see com.artechnologiesllc.taskcompleter.domain.Task
+ * @see com.artechnologiesllc.tc.domain.Task
  */
 public interface TaskDAO {
     
