@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+       <bean id="localSessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="annotatedClasses">
+            <list>
+                <value>com.artechnologiesllc.tc.domain.CompleteInfo</value>
+                <value>com.artechnologiesllc.tc.domain.Problem</value>
+                <value>com.artechnologiesllc.tc.domain.Task</value>
+                <value>com.artechnologiesllc.tc.domain.TaskGroup</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.show_sql">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost/tasks_dev</prop>
+                <prop key="hibernate.connection.username">tasksDevUser</prop>
+                <prop key="hibernate.connection.password">tasksdev</prop>
+                <prop key="hibernate.connection.shutdown">true</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <!-- enable the configuration of transactional behavior based on annotations -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref local="localSessionFactory"/>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    
+    <!-- TODO: Define DAO beans -->
+    <bean id="problemDAO" class="com.artechnologiesllc.tc.persistence.dao.hibernate.ProblemHibernateDAO">
+        <property name="sessionFactory" ref="localSessionFactory"/>
+    </bean>
+
+</beans>
