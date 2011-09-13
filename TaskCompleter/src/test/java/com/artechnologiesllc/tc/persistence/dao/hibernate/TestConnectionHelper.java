@@ -21,7 +21,7 @@ public class TestConnectionHelper {
     
     public static Connection getConnection() throws SQLException {
         if(connection == null)
-            connection = ((DataSource)TestPersistenceContext.getInstance().getBean("localDataSource")).getConnection();
+            connection = ((DataSource)PersistenceContext.getInstance().getBean("localDataSource")).getConnection();
         
         return connection;
     }

@@ -57,7 +57,7 @@ public class TaskHibernateDAOTest {
         task.setWeeks(weeks);
         task.setMonths(months);
         
-        TaskDAO dao = (TaskDAO)TestPersistenceContext.getInstance().getBean("taskDAO");
+        TaskDAO dao = (TaskDAO)PersistenceContext.getInstance().getBean("taskDAO");
         
         Task persistedTask = dao.persist(task);
         assertNotNull("Id", persistedTask.getId());
@@ -114,7 +114,7 @@ public class TaskHibernateDAOTest {
         task.setWeeks((byte)1);
         task.setMonths((short)1);
         
-        TaskDAO dao = (TaskDAO)TestPersistenceContext.getInstance().getBean("taskDAO");
+        TaskDAO dao = (TaskDAO)PersistenceContext.getInstance().getBean("taskDAO");
         dao.delete(task);
         
         PreparedStatement statement = null;
@@ -140,7 +140,7 @@ public class TaskHibernateDAOTest {
     @Test
     @Ignore
     public void testGetTask() throws Exception {        
-        TaskDAO dao = (TaskDAO)TestPersistenceContext.getInstance().getBean("taskDAO");
+        TaskDAO dao = (TaskDAO)PersistenceContext.getInstance().getBean("taskDAO");
         
         Task result = dao.getTask(2L);
         assertNotNull(result);

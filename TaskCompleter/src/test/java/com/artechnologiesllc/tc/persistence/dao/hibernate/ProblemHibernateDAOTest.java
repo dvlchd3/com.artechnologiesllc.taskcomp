@@ -47,7 +47,7 @@ public class ProblemHibernateDAOTest {
         problem.setDoc(doc);
         problem.setPriority(priority);
         
-        ProblemDAO dao = (ProblemDAO) TestPersistenceContext.getInstance().getBean("problemDAO");
+        ProblemDAO dao = (ProblemDAO) PersistenceContext.getInstance().getBean("problemDAO");
         Problem perProblem = dao.persist(problem);
         
         assertNotNull("Id", perProblem.getId());
@@ -79,7 +79,7 @@ public class ProblemHibernateDAOTest {
         procedures.add("UpdatedProcedures 1_1");
         problem.setProcedures(procedures);
         
-        ProblemDAO dao = (ProblemDAO)TestPersistenceContext.getInstance().getBean("problemDAO");
+        ProblemDAO dao = (ProblemDAO)PersistenceContext.getInstance().getBean("problemDAO");
         Problem persistProblem = dao.persist(problem);
         assertEquals("Id", problem.getId(), persistProblem.getId());
         assertEquals("Title", problem.getTitle(), persistProblem.getTitle());
@@ -139,7 +139,7 @@ public class ProblemHibernateDAOTest {
         procedures.add("Procedure 2_2");
         problem.setProcedures(procedures);
         
-        ProblemDAO instance = (ProblemDAO)TestPersistenceContext.getInstance().getBean("problemDAO");
+        ProblemDAO instance = (ProblemDAO)PersistenceContext.getInstance().getBean("problemDAO");
         instance.delete(problem);
         
         PreparedStatement statement = null;
@@ -177,7 +177,7 @@ public class ProblemHibernateDAOTest {
     @Test
     @Ignore
     public void testGetProblem() {
-        ProblemDAO dao = (ProblemDAO)TestPersistenceContext.getInstance().getBean("problemDAO");
+        ProblemDAO dao = (ProblemDAO)PersistenceContext.getInstance().getBean("problemDAO");
         
         Problem expProblem = new Problem();
         expProblem.setId(3);

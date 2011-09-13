@@ -7,7 +7,6 @@ package com.artechnologiesllc.tc.domain;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 /**
  * Represents the completion information for a <code>Task</code>.
@@ -55,7 +54,6 @@ public class CompleteInfo implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn(name="task_id", nullable=false, updatable=false, insertable=false)
-    @NotNull
     public Task getTask() {
         return task;
     }
@@ -77,7 +75,6 @@ public class CompleteInfo implements Serializable {
     @Id
     @Column(name="scheduled_date")
     @Temporal(TemporalType.DATE)
-    @NotNull
     public Date getSchDate() {
         return schDate;
     }
@@ -97,7 +94,6 @@ public class CompleteInfo implements Serializable {
      */
     @Column(name="completed_time")
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     public Date getCompTime() {
         return compTime;
     }
@@ -150,7 +146,6 @@ public class CompleteInfo implements Serializable {
      * @return Completion information.
      */
     @Column(name="complete_info", length=15)
-    @NotNull
     public String getInfo() {
         return info;
     }
@@ -169,7 +164,6 @@ public class CompleteInfo implements Serializable {
      * @return Completing username.
      */
     @Column(name="complete_user", length=15)
-    @NotNull
     public String getUser() {
         return user;
     }

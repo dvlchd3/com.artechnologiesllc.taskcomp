@@ -11,18 +11,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  * @author dan
  */
-public class TestPersistenceContext extends ClassPathXmlApplicationContext {
+public class PersistenceContext extends ClassPathXmlApplicationContext {
     
-    private static final String FILE_NAME = "persistenceTestContext.xml";
+    private static final String FILE_NAME = "persistenceContext.xml";
     private static ApplicationContext instance;
     
-    protected TestPersistenceContext(){
+    protected PersistenceContext(){
         super(FILE_NAME);
     }
     
     public static ApplicationContext getInstance() {
         if(instance == null)
-            instance = new TestPersistenceContext();
+            instance = new PersistenceContext();
         
         return instance;
     }

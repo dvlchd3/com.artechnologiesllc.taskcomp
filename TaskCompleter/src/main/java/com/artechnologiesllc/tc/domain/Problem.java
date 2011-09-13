@@ -7,8 +7,6 @@ package com.artechnologiesllc.tc.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Range;
 
 /**
  * <p>Represents the alternate procedure if there is a problem with
@@ -81,7 +79,6 @@ public class Problem implements Serializable {
      * @return Title.
      */
     @Column(name="title", nullable=false, length=45)
-    @NotNull
     public String getTitle() {
         return title;
     }
@@ -98,7 +95,6 @@ public class Problem implements Serializable {
      * @return Contact person/group.
      */
     @Column(name="contact", nullable=false, length=25)
-    @NotNull
     public String getContact() {
         return contact;
     }
@@ -116,7 +112,6 @@ public class Problem implements Serializable {
      * @return Priority of the case.
      */
     @Column(name="priority", nullable=false)
-    @Range(min=1, max=5)
     public byte getPriority() {
         return priority;
     }
@@ -156,7 +151,6 @@ public class Problem implements Serializable {
             joinColumns={@JoinColumn(name="problem_id", nullable=false)})
     @Column(name="procedure_value", nullable=false)
     @OrderColumn(name="procedure_num", nullable=false)
-    @NotNull
     public List<String> getProcedures() {
         return procedures;
     }

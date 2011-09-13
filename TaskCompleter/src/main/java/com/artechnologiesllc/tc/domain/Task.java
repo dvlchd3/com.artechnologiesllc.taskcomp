@@ -3,8 +3,6 @@ package com.artechnologiesllc.tc.domain;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Range;
 
 /**
  * <p>Represents a <code>Task</code> that needs to be completed. This
@@ -235,7 +233,6 @@ public class Task implements Serializable {
      * @return <code>Task</code> title.
      */
     @Column(name="title", nullable=false, length=50)
-    @NotNull
     public String getTitle() {
         return title;
     }
@@ -302,7 +299,6 @@ public class Task implements Serializable {
      * @return Input type.
      */
     @Column(name="input_type", nullable=false)
-    @Range(min=1, max=4)
     public byte getInputType() {
         return inputType;
     }
@@ -373,8 +369,7 @@ public class Task implements Serializable {
      * for completion.
      * @return Days.
      */
-    @Column(name="weeks")
-    @Range(min=0, max=254)
+    @Column(name="days")
     public Short getDays() {
         return days;
     }
@@ -393,7 +388,6 @@ public class Task implements Serializable {
      * @return Weeks.
      */
     @Column(name="weeks")
-    @Range(min=0, max=62)
     public Byte getWeeks() {
         return weeks;
     }
@@ -412,7 +406,6 @@ public class Task implements Serializable {
      * @return Months.
      */
     @Column(name="months")
-    @Range(min=0, max=8190)
     public Short getMonths() {
         return months;
     }

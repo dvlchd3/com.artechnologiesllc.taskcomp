@@ -3,7 +3,6 @@ package com.artechnologiesllc.tc.domain;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 /**
  * <p>Represents a group of <code>Task</code>s to complete. This class
@@ -41,7 +40,6 @@ public class TaskGroup implements Serializable {
      */
     @Id
     @Column(name="group_name", length=20)
-    @NotNull
     public String getName() {
         return name;
     }
@@ -58,7 +56,6 @@ public class TaskGroup implements Serializable {
      * @return Display name.
      */
     @Column(name="display_name", length=20)
-    @NotNull
     public String getDisplayName() {
         return displayName;
     }
