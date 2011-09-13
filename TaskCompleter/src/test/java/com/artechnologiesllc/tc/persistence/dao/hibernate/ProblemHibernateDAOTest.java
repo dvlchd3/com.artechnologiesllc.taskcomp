@@ -71,7 +71,7 @@ public class ProblemHibernateDAOTest {
     @Ignore
     public void testUpdate() throws Exception {
         Problem problem = new Problem();
-        problem.setId(1L);
+        problem.setId(1);
         problem.setTitle("UpdatedTitle1");
         problem.setContact("UpdateContact1");
         problem.setDoc("UpdatedDocumentationFile1");
@@ -130,7 +130,7 @@ public class ProblemHibernateDAOTest {
     @Ignore
     public void testDelete() throws Exception {
         Problem problem = new Problem();
-        problem.setId(2L);
+        problem.setId(2);
         problem.setTitle("Test2");
         problem.setContact("Contact2");
         problem.setDoc("Doc2");
@@ -180,7 +180,7 @@ public class ProblemHibernateDAOTest {
         ProblemDAO dao = (ProblemDAO)TestPersistenceContext.getInstance().getBean("problemDAO");
         
         Problem expProblem = new Problem();
-        expProblem.setId(3L);
+        expProblem.setId(3);
         expProblem.setTitle("Test3");
         expProblem.setContact("Contact3");
         expProblem.setDoc("Doc3");
