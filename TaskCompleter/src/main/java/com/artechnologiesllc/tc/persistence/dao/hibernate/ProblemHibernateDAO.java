@@ -31,7 +31,7 @@ public class ProblemHibernateDAO extends HibernateDaoSupport implements ProblemD
         getHibernateTemplate().delete(problem);
     }
 
-    public Problem getProblem(Long problemid) {
+    public Problem getProblem(int problemid) {
         logger.debug("Finding problem by id: " + (long)problemid);
         
         List result = getHibernateTemplate().findByNamedQuery("com.artechnologiesllc.tc.problemById", problemid);

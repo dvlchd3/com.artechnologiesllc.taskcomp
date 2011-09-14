@@ -38,5 +38,5 @@ public interface ProblemDAO {
      * @return <code>Problem</code> instance from the database or
      *          <code>null</code> if id cannot be found.
      */
-    public Problem getProblem(Long problemid);
+    public Problem getProblem(int problemid);
 }
