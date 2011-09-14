@@ -156,6 +156,10 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="Task")
+@NamedQueries({
+    @NamedQuery(name="com.artechnologiesllc.tc.findTaskById",
+                query="from Task as task where task.id = ?")
+})
 public class Task implements Serializable {
     
     /**

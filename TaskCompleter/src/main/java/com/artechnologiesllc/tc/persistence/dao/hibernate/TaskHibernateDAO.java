@@ -30,8 +30,8 @@ public class TaskHibernateDAO extends HibernateDaoSupport implements TaskDAO {
         getHibernateTemplate().delete(task);
     }
 
-    public Task getTask(Long taskid) {
-        logger.debug("Finding task by id: " + (long)taskid);
+    public Task getTask(int taskid) {
+        logger.debug("Finding task by id: " + taskid);
         
         List result = getHibernateTemplate().findByNamedQuery("com.artechnologiesllc.tc.taskById", taskid);
         if(result.size() <= 0) {

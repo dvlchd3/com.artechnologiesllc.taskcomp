@@ -38,5 +38,5 @@ public interface TaskDAO {
      * @return <code>Task</code> instance from the database or
      *          <code>null</code> if id cannot be found.
      */
-    public Task getTask(Long taskid);
+    public Task getTask(int taskid);
 }

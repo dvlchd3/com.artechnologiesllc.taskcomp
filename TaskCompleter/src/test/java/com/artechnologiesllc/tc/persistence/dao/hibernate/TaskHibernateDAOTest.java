@@ -4,7 +4,6 @@
  */
 package com.artechnologiesllc.tc.persistence.dao.hibernate;
 
-import com.artechnologiesllc.tc.domain.Task;
 import org.junit.Ignore;
 import java.text.SimpleDateFormat;
 import java.sql.ResultSet;
@@ -35,67 +34,36 @@ public class TaskHibernateDAOTest {
      * Test of persist method, of class TaskHibernateDAO.
      */
     @Test
-    @Ignore
     public void testPersist() throws Exception {
-        String title = "Persisted Task 1";
-        String details = "Persisted Details 1";
-        String documentationFile = "Persisted Doc 1";
-        byte inputType = 1;
-        Date startDate = new SimpleDateFormat("yyyy-MM-dd").parse("2011-08-29");
-        Date endDate = null;
-        short days = 1;
-        byte weeks = 1;
-        short months = 1;
+        String title = "Create Task";
+        String details = "Create Details";
+        Date schTime = new SimpleDateFormat("HH:mm").parse("05:00");
+        String doc = "Create Doc";
         Task task = new Task();
         task.setTitle(title);
         task.setDetails(details);
-        task.setDoc(documentationFile);
-        task.setInputType(inputType);
-        task.setStartDate(startDate);
-        task.setEndDate(endDate);
-        task.setDays(days);
-        task.setWeeks(weeks);
-        task.setMonths(months);
+        task.setSchTime(schTime);
+        task.setDoc(doc);
         
-        TaskDAO dao = (TaskDAO)PersistenceContext.getInstance().getBean("taskDAO");
+        TaskDAO dao = (TaskDAO) TestPersistenceContext.getInstance().getBean("taskDAO");
+        Task perTask = dao.persist(task);
         
-        Task persistedTask = dao.persist(task);
-        assertNotNull("Id", persistedTask.getId());
-        assertEquals("Title", title, persistedTask.getTitle());
-        assertEquals("Details", details, persistedTask.getDetails());
-        assertEquals("Documentation File", documentationFile, persistedTask.getDoc());
-        assertEquals("Input Type", inputType, persistedTask.getInputType());
-        assertNull("Problem", persistedTask.getProblem());
-        assertEquals("Start Date", startDate, persistedTask.getStartDate());
-        assertEquals("End Date", endDate, persistedTask.getEndDate());
-        assertEquals("Days", days, (short)persistedTask.getDays());
-        assertEquals("Weeks", weeks, (byte)persistedTask.getWeeks());
-        assertEquals("Months", months, (short)persistedTask.getMonths());
+        assertNotNull("Id", perTask.getId());
+        assertEquals("Title", title, perTask.getTitle());
+        assertEquals("Details", details, perTask.getDetails());
+        assertEquals("SchTime", schTime, perTask.getSchTime());
+        assertEquals("Doc", doc, perTask.getDoc());
         
-        PreparedStatement statement = null;
-        ResultSet results = null;
-        try {
-            statement = connection.prepareStatement("SELECT * FROM Task WHERE task_id=?");
-            statement.setLong(1, persistedTask.getId());
-            results = statement.executeQuery();
-            results.next();
-            
-            assertEquals("Database title", title, results.getString("title"));
-            assertEquals("Database details", details, results.getString("details"));
-            assertEquals("Database Documentation File", documentationFile, results.getString("documentationFile"));
-            assertEquals("Database Input Type", inputType, results.getByte("inputType"));
-            assertEquals("Database Start Date", startDate, results.getDate("startDate"));
-            assertEquals("Database End Date", endDate, results.getDate("endDate"));
-            assertEquals("Database Days", days, results.getShort("days"));
-            assertEquals("Database Weeks", weeks, results.getByte("weeks"));
-            assertEquals("Database Months", months, results.getShort("months"));
-        } finally {
-            if(statement != null)
-                statement.close();
-            
-            if(results != null)
-                results.close();
-        }
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Task WHERE task_id=?");
+        stmt.setInt(1, perTask.getId());
+        ResultSet results = stmt.executeQuery();
+        
+        assertTrue("Exists in DB", results.next());
+        
+        assertEquals("DB Title", title, results.getString("title"));
+        assertEquals("DB Details", details, results.getString("details"));
+        assertEquals("DB SchTime", schTime.getTime(), results.getTime("schTime").getTime());
+        assertEquals("DB Doc", doc, results.getString("documentation"));
     }
 
     /**
@@ -114,7 +82,7 @@ public class TaskHibernateDAOTest {
         task.setWeeks((byte)1);
         task.setMonths((short)1);
         
-        TaskDAO dao = (TaskDAO)PersistenceContext.getInstance().getBean("taskDAO");
+        TaskDAO dao = (TaskDAO)TestPersistenceContext.getInstance().getBean("taskDAO");
         dao.delete(task);
         
         PreparedStatement statement = null;
@@ -140,9 +108,9 @@ public class TaskHibernateDAOTest {
     @Test
     @Ignore
     public void testGetTask() throws Exception {        
-        TaskDAO dao = (TaskDAO)PersistenceContext.getInstance().getBean("taskDAO");
+        TaskDAO dao = (TaskDAO)TestPersistenceContext.getInstance().getBean("taskDAO");
         
-        Task result = dao.getTask(2L);
+        Task result = dao.getTask(2);
         assertNotNull(result);
         
         assertEquals("Title", "Get Test Task", result.getTitle());
